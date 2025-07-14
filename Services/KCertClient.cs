@@ -148,16 +148,16 @@ public class KCertClient
 
         var path = new V1HTTPIngressPath
         {
-            Path = "/.well-known/acme-challenge/",
-            PathType = "Prefix",
-            Backend = new()
+        Path = "/.well-known/acme-challenge/",
+        PathType = "ImplementationSpecific",
+        Backend = new()
+        {
+            Service = new()
             {
-                Service = new()
-                {
-                    Name = _cfg.KCertServiceName,
-                    Port = new(number: _cfg.KCertServicePort)
-                },
+                Name = _cfg.KCertServiceName,
+                Port = new(number: _cfg.KCertServicePort)
             },
+        },
         };
 
         return new()
